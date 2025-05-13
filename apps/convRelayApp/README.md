@@ -1,134 +1,64 @@
-# Conversation Relay Sample App, Low code with Airtable
+# Voice Assistant with Twilio and Open AI (Node.js)
 
-> Note: This is the README from the [original work](https://github.com/midshipman/owl-shoes) by Hao Wang.  
+This application demonstrates how to use Node.js, [Twilio Voice](https://www.twilio.com/docs/voice) and [ConversationRelay](https://www.twilio.com/docs/voice/twiml/connect/conversationrelay), and the [Open AI API](https://docs.anthropic.com) to create a voice assistant that can engage in two-way conversations over a phone call. Other branches in this repository demonstrate how to add more advanced features such as streaming, interruption handling, and tool/function calling.
 
-------------------
+## Prerequisites
 
+To use the app, you will need:
 
-Twilio gives you a superpower called Conversation Relay, it provides a Websocket connection, STT and TTS integrated with optimised latency, so you can easily build a voice bot with your own LLM.
+- **Node.js 23.9.0**: Download from [here](https://nodejs.org/). Other versions may work, but I tested with this one.
+- **A Twilio Account**: Sign up for a free trial [here](https://www.twilio.com/try-twilio).
+- **A Twilio Number with Voice Capabilities**: [Instructions to purchase a number](https://support.twilio.com/hc/en-us/articles/223180928-How-to-Buy-a-Twilio-Phone-Number).
+- **An Open AI Account and API Key**: Visit Open AI's platform [here](https://platform.openai.com/api-keys) for more information.
 
-This app serves as a demo exploring:
-- Conversation Relay features
-- [OpenAI](https://openai.com) for GPT prompt completion
-- Low code options with Airtable, so easy to build different use cases.
+## Setup
 
+### 1. Run ngrok
 
-Features:
-- 🏁 Returns responses with low latency, typically 1 second by utilizing streaming.
-- ❗️ Allows the user to tweak the promt via Airtable to build different use cases.
-- 📔 Maintains chat history with GPT.
-- 🛠️ Allows the GPT to call external tools, currently support:
-	- getWeather from openweathermap
- 	- changeLanguage during the conversation 
- 	- placeOrder(simulate confirm and send SMS)
+You'll need to expose your local server to the internet for Twilio to access it. Use ngrok for tunneling:
 
+```bash
+ngrok http 8080
+```
 
-## IMPORTANT
-This repository and app is a snapshot of work authored by Hao Wang ( Twilio Solution Architect) and was adapted from his [original work](https://github.com/midshipman/owl-shoes).  
+Copy the Forwarding URL and put it aside; it looks like https://[your-ngrok-subdomain].ngrok.app. You'll need it in a couple places.
 
-This work was amended to provide support to demonstrate transition of the self-service experience to a live agent on Twilio Flex. The basis of the implementation was derived from the ["Voxray" branch](https://github.com/twilio-cfeehan/call-gpt/tree/voxray) of the work from Chris Feehan (Senior Principle Product Manager).
+### 2. Install dependencies
 
-Optimization of this codebase should be considered for all use within any formal PRODUCTION environment.
-
-
-## Setting up for Development
-
-### Prerequisites
-Sign up for the following services and get an API key for each:
-- [Airtable](https://www.airtable.com)
-- [OpenAI](https://platform.openai.com/signup)
-- [Twilio](https://www.twilio.com)
-- [Openweathermap](http://api.openweathermap.org)
-
-
-
-You should get your Twilio Account Flag (Voice - Enable Conversation Relay) enabled as well.
-
-If you're hosting the app locally, we also recommend using a tunneling service like [ngrok](https://ngrok.com) so that Twilio can forward audio to your app.
-
-### 1. Configure Environment Variables
-Copy `.env.example` to `.env` and configure the environment variables.
-
-### 2. Install Dependencies with NPM
-Install the necessary packages:
+Run the following command to install necessary packages:
 
 ```bash
 npm install
 ```
 
-### 3. Configure Airtable
-Copy the table below to your own space, or create table with the same fields highlighted in the red rectangle.
-[Airtable Sample](https://airtable.com/appUnia3pFUA5rPlr/shrw1jDP2s53JEuy5)
+### 3. Configure Twilio
 
-Make sure the name of your table is 'builder'.
+Update Your Twilio Phone Number: In the Twilio Console under **Phone Numbers**, set the Webhook for **A call comes in** to your ngrok URL followed by /twiml. 
 
-You can add a new record with your own prompt. The most recently updated record will be read when a call is incoming, and the fields in the record will be used to provision Conv-Relay and GPT.
+Example: `https://[your-ngrok-subdomain].ngrok.app/twiml`.
 
-![Airtable Sample](images/airtable-sample.png)
+### 4. Configure Environment Variables
 
-
-
-### 4. Start Ngrok
-Start an [ngrok](https://ngrok.com) tunnel for port `3000`:
+Copy the example environment file to `.env`:
 
 ```bash
-ngrok http 3000
+cp .env.example .env
 ```
-Ngrok will give you a unique URL, like `abc123.ngrok.io`. Copy the URL without http:// or https://, set this for 'SERVER' in your .env.
 
-### 5. Start Your Server in Development Mode
-Run the following command:
-```bash
-npm run dev
-```
-This will start your app using `nodemon` so that any changes to your code automatically refreshes and restarts the server.
+Edit the .env file and input your Open AI API key in `OPENAI_API_KEY`. Add your ngrok URL in `NGROK_URL` (do not include the scheme, "http://" or "https://")
 
-### 6. Configure an Incoming Phone Number
+## Run the app
 
-> NOTE:	This step can be utilized for simplicity. Alternatively you can import the sample [Inbound Call Studio Flow](../../docs/studio.json) as well. Refer to Step 5 of the [README](../../README.md) for additional details.
-
-
-#### Simple Phone Number Configuration
-Connect a phone number using the [Twilio Console](https://console.twilio.com/us1/develop/phone-numbers/manage/incoming).
-
-You can also use the Twilio CLI:
+Start the development server:
 
 ```bash
-twilio phone-numbers:update +1[your-twilio-number] --voice-url=https://your-server.ngrok.io/incoming
-```
-This configuration tells Twilio to send incoming call audio to your app when someone calls your number. The app responds to the incoming call webhook with a [Stream](https://www.twilio.com/docs/voice/twiml/stream) TwiML verb that will connect an audio media stream to your websocket server.
-
-
-### 7. Modifying the ChatGPT Context & Prompt
-- You can tweak the prompt and some other options via Airtable, either modify your record directly, or create and use your Airtable form as below.
-
-![Airtable Form](images/airtable-form.png)
-
-### 8. Monitor and Logs 
-You can monitor logs at https://you-server-address/monitor
-![ConvRelay-Logs](images/convrelay-logs.png)
-
-## Deploying to Fly.io 
-> Deploying to Fly.io is not required to try the app, but can be helpful if your home internet speed is variable.
-
-Modify the app name `fly.toml` to be a unique value (this must be globally unique).
-
-Deploy the app using the Fly.io CLI:
-```bash
-fly launch
-
-fly deploy
-```
-Update the 'SERVER' in .env with the fly.io server you get.
-
-Import your secrets from your .env file to your deployed app:
-```bash
-fly secrets import < .env
+node index.js
 ```
 
-### 8. Configure and Launch the Serverless Function
-This Conversation Relay websocket server application includes a Twilio Serverless Function ( serverless-cr/functions/agenthandoff.js ) to support orchestration of the inbound call to a Twilio Flex agent.
+## Run and test the app
 
-Follow the assoicated [README](../convRelayApp/serverless-cr/README.md) for details on deploying this serverless function.
+Call your Twilio phone number. After connection, you should be able to converse with the Open AI-powered AI Assistant, integrated over ConversationRelay with Twilio Voice!
 
-> NOTE: This function process should be launched on port 3001.  
+> [!NOTE] 
+> Customize the initial greeting and response behavior by modifying the aiResponse function and constants like SYSTEM_PROMPT in index.js.
+> Ensure that you update ngrok URLs each time you restart ngrok, as they change with each session.
