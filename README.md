@@ -45,7 +45,16 @@ Use the Twilio Console to create a new Flex Account
 
 
 1. Install CLI using the official [Twilio CLI Quickstart](https://www.twilio.com/docs/twilio-cli/quickstart)
+```
+brew install twilio
+```
 2. Install the CLI plugins for serverless and Flex [CLI Plugins](https://www.twilio.com/docs/twilio-cli/plugins)
+```
+twilio plugins:install @twilio-labs/plugin-serverless
+```
+```
+twilio plugins:install @twilio-labs/plugin-flex
+```
 3. Create a [CLI profile](https://www.twilio.com/docs/twilio-cli/general-usage))
 
 ```
