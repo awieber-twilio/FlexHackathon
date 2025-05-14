@@ -25,6 +25,10 @@ Copy the Forwarding URL and put it aside; it looks like https://[your-ngrok-subd
 
 ### 2. Install dependencies
 
+Navigate to the current directory:
+```
+cd apps/convRelayApp
+```
 Run the following command to install necessary packages:
 
 ```bash
