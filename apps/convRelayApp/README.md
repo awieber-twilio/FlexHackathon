@@ -116,7 +116,7 @@ async function handleLiveAgentHandoff(callSid) {
  We added an environment variable that we'll need to add to our .env file.
 
  ### Step 4: Import Studio Flow
- Follow step 4 linked [here](/README) to import your Studio Flow and update your .env file.
+ Follow step 4 linked [here](../../README) to import your Studio Flow and update your .env file.
 
 > [!NOTE] 
 > Customize the initial greeting and response behavior by modifying the aiResponse function and constants like SYSTEM_PROMPT in index.js.
