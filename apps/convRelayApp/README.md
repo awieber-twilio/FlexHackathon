@@ -62,7 +62,7 @@ After you're done chatting with your bot, follow the next step to hand off your 
 
 ## Conversation Relay: Add tool for agent handoff 
 
-In index.js, find the array that defines the AI Assistant's tools at line 26.  Add the following code block within the array to add a function for transfering the call. 
+1. In index.js, find the array that defines the AI Assistant's tools at line 26.  Add the following code block within the array to add a function for transfering the call. 
 ```
  {
     type: 'function',
@@ -92,7 +92,8 @@ In index.js, find the array that defines the AI Assistant's tools at line 26.  A
     },
  }  
  ```
- Add the agent_handoff tool within toolFunctions in line 81. The final object should look like this: 
+ 
+ 2. Add the agent_handoff tool within toolFunctions in line 81. The final object should look like this: 
  ```
  const toolFunctions = {
   get_programming_joke: async () => getJoke(),
@@ -100,7 +101,7 @@ In index.js, find the array that defines the AI Assistant's tools at line 26.  A
 };
  ```
 
-Now add the async function for handling the live agent handoff
+3. Now add the async function for handling the live agent handoff
  ```
 async function handleLiveAgentHandoff(callSid) {
   await client.calls(callSid).update(

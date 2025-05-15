@@ -1,21 +1,22 @@
 # Conversation Relay & Flex
 
-This repository contains prototype packages for Twilio Conversation Relay (CR) and a Flex Plugin that offers agent assistance to a customer engaging in the CR self-service flow.
+This repository contains prototype packages for Twilio Conversation Relay (CR) with an agent handoff to Twilio Flex.
 
-These examples are built upon Twilio's Serverless Functions and generally require utilization of the Twilio CLI and serverless runtime plugin.  Reference the section on "Prerequisites" for more details.
+These examples are built upon Twilio's Serverless Functions and generally require utilization of the Twilio CLI.
 
 &nbsp;
 
 ## Architecture
 
-This is the typical architecture that reflects the communications between the Flex UI (plugin) and the Twilio Cloud (Serverless Functions).
-
-There are three (3) primary parts of this demonstration package.  They are:
-- Conversation Relay Websocket server ( apps >> convRelayApp ) node process;
-- Twilio Function for agent handoff ( Twilio CLI serverless process); and
-- Flex Plugin ( apps >> flexPluginApp ) (Twilio CLI Flex plugin process).
+There are two primary parts of this demonstration package.  They are:
+- Conversation Relay Websocket server 
+- Function & Studio Flow for agent handoff 
 
 >NOTE: In a development/testing environment there are three (3) processes running to support a demonstration in DEV.  These are: (1) The CR websocket server (node application) runs locally on port 3000; (2) A separate process is used to host the Twilio Function responsible for agentHandoff.  This uses the Twilio CLI and runs on port 3001; and (3) A final process is used to start the Flex UI with the plugin.  This also uses the Twilio CLI and Flex plugin running on port 3002.
+
+We will be deploying the Conversation Relay Server and adding the agent handoff during this lab. 
+
+This is the typical architecture that reflects the communications between the Flex UI (plugin) and the Twilio Cloud (Serverless Functions).
 
 &nbsp;
 
@@ -37,7 +38,7 @@ Perform the following steps to configure, test and deploy this Twilio Flex plugi
 
 ### Step 1 : Create a new Flex Account
 
-Use the Twilio Console to create a new Flex Account
+Use the Twilio Console to create a new Flex Account if you do not already have one. Test that you can navigate to "Flex" and "Login with Console" before proceeding. 
 
 &nbsp;
 
@@ -75,24 +76,24 @@ Follow the instructions in the [README](/apps/convRelayApp/README.md) file for t
  
  ### Step 4: Import the example Studio Flow 
 
-Navigate to Twilio Studio and create a new Flow. Name it something like "Transfer to Flex".
-Scroll down and select import from JSON. Then copy the JSON from the example [Studio Flow](/docs/studio.json).
+1. Navigate to Twilio Studio and create a new Flow. Name it something like "Transfer to Flex".
 
+2. Scroll down and select import from JSON. Then copy the JSON from the example [Studio Flow](/docs/studio.json).
 
-Select the Redirect widget and update the URL to the ngrok URL for your conversation relay app. Example: `https://[your-ngrok-subdomain].ngrok.app/twiml`.
+3. Select the Redirect widget and update the URL to the ngrok URL for your conversation relay app. Example: `https://[your-ngrok-subdomain].ngrok.app/twiml`.
 
-Select the "SendCalltoAgent" widget and Select "Assign to Anyone" under the Workflow dropdown. 
+4. Select the "SendCalltoAgent" widget and Select "Assign to Anyone" under the Workflow dropdown. 
 
-Save and publish your studio flow. 
+5. Save and publish your studio flow. 
 
-Click on the "Trigger" box to view your Flow Configuration. 
+6. Click on the "Trigger" box to view your Flow Configuration. 
 ![FlowConfiguration](images/FlowConfiguration.png)
 
-Copy the "Webhook URL" to your .env file within the convRelay folder. 
+7. Copy the "Webhook URL" to your .env file within the convRelay folder. 
 
-Navigate back to your phone numbers and select "Studio Flow" under "A call comes in". Select the Flow you just created under "Flow. 
+8. Navigate back to your phone numbers and select "Studio Flow" under "A call comes in". Select the Flow you just created under "Flow. 
 
-Now you're ready to launch your Conversation Relay server once more by running 
+9. Now you're ready to launch your Conversation Relay server once more by running 
 ```
 node index.js
 ```
@@ -101,13 +102,13 @@ node index.js
 
 ### Testing your Transfer
 
-In the Twilio console, search for or navigate to "Flex" and select "Log in with Console"
+1. In the Twilio console, search for or navigate to "Flex" and select "Log in with Console"
 
-In the upper right corner, set your agent to "Available"
+2. In the upper right corner, set your agent to "Available"
 
-Call your Twilio phone number once more. Feel free to chat with your AI Assistant, but eventually you should ask to be transferred to a human. 
+3. Call your Twilio phone number once more. Feel free to chat with your AI Assistant, but eventually you should ask to be transferred to a human. 
 
-If all works as planned, you should see an incoming task in your Flex UI. Accept it, and talk to yourself if you'd like. You should plan to mute one or both participants. 
+4. If all works as planned, you should see an incoming task in your Flex UI. Accept it, and talk to yourself if you'd like. You should plan to mute one or both participants. 
 
 
 ### Next Steps
