@@ -133,9 +133,6 @@ async function handleLiveAgentHandoff(callSid) {
 Navigate to Twilio Studio and create a new Flow. Name it something like "Transfer to Flex".
 Scroll down and select import from JSON. Then copy the JSON from the example [Studio Flow](/docs/studio.json).
 
-The screenshot below illustrate this flow. 
-
-![IncomingCallStudioFlow](/images/IncomingCallStudioFlow.jpg) 
 
 Select the Redirect widget and update the URL to the ngrok URL for your conversation relay app. Example: `https://[your-ngrok-subdomain].ngrok.app/twiml`.
 
