@@ -1,4 +1,4 @@
-# Twilio SKO 2025 Hackathon: Conversation Relay & Flex
+# Conversation Relay & Flex
 
 This repository contains prototype packages for Twilio Conversation Relay (CR) and a Flex Plugin that offers agent assistance to a customer engaging in the CR self-service flow.
 
@@ -72,63 +72,8 @@ twilio profiles:use <ProfileName>
 ### Step 3 : Install/Config of the Conversation Relay App ( socket server )
 
 Follow the instructions in the [README](/apps/convRelayApp/README.md) file for the CR App.
-
-## Conversation Relay: Add tool for agent handoff 
-
-In index.js, find the array that defines the AI Assistant's tools at line 21.  Add the following code block within the array to add a function for transfering the call. 
-```
- {
-    type: 'function',
-    function: {
-      name: 'agent_handoff',
-      say: 'One moment while I transfer your call.',
-      description: 'Transfers the customer to a live agent in case they request help from a real person.',
-      parameters: {
-        type: 'object',
-        properties: {
-          callSid: {
-            type: 'string',
-            description: 'The unique identifier for the active phone call.',
-          },
-        },
-        required: ['callSid'],
-      },
-      returns: {
-        type: 'object',
-        properties: {
-          status: {
-            type: 'string',
-            description: 'Whether or not the customer call was successfully transfered'
-          },
-        }
-      }
-    },
- }  
- ```
- Add the agent_handoff tool within toolFunctions in line 75. The final object should look like this: 
- ```
- const toolFunctions = {
-  get_programming_joke: async () => getJoke(),
-  agent_handoff: async (callSid) => handleLiveAgentHandoff(callSid)
-};
- ```
-
-Now add the async function for handling the live agent handoff
- ```
-async function handleLiveAgentHandoff(callSid) {
-  await client.calls(callSid).update(
-    {  twiml: 
-    `<Response><Say>One second while we connect you</Say><Redirect>` +
-    process.env.STUDIO_FLOW_URL
-    + `?FlowEvent=return</Redirect></Response>`
-    }
-  );
-}
- ```
-
- We added an environment variable that we'll need to add to our .env file. Complete step 5 before running the conversation relay server once again. 
-
-### Step 5: Import the example Studio Flow
+ 
+ ### Step 4: Import the example Studio Flow 
 
 Navigate to Twilio Studio and create a new Flow. Name it something like "Transfer to Flex".
 Scroll down and select import from JSON. Then copy the JSON from the example [Studio Flow](/docs/studio.json).
@@ -147,29 +92,26 @@ Copy the "Webhook URL" to your .env file within the convRelay folder.
 
 Navigate back to your phone numbers and select "Studio Flow" under "A call comes in". Select the Flow you just created under "Flow. 
 
-Now you're ready to deploy your Conversation Relay server once more by running 
+Now you're ready to launch your Conversation Relay server once more by running 
 ```
 node index.js
 ```
 
 &nbsp;
 
-### Step 4: Install/Config of the Flex Plugin
+### Testing your Transfer
 
-Follow the instructions in the [README](/apps/flexPluginApp/README.md) file for the Flex Plugin App.
+In the Twilio console, search for or navigate to "Flex" and select "Log in with Console"
+
+In the upper right corner, set your agent to "Available"
+
+Call your Twilio phone number once more. Feel free to chat with your AI Assistant, but eventually you should ask to be transferred to a human. 
+
+If all works as planned, you should see an incoming task in your Flex UI. Accept it, and talk to yourself if you'd like. You should plan to mute one or both participants. 
 
 
-### Step 8. Launch the Twilio Flex Plugin
+### Next Steps
 
-Use the following command to launch the Twilio Flex plugin locally from within the folder 'apps/flexPluginApp':
+If you've completed these step during the allotted time, you've reached the "Choose your own adventure" portion of this guided lab. Congrats!! 
+We recommend following along with one (or all!) of these tutorials to build the digital engagement center of your wildest dreams: 
 
-> NOTE: Specify that this should run on port 3002.
-
-```
-cd flexPluginApp
-twilio flex:plugins:start
-```
-
->NOTE: Choose port 3002 to run this Flex Plugin on.
-
-&nbsp;

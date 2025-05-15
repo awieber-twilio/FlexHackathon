@@ -38,33 +38,6 @@ const tools = [
       strict: true,
     },
   },
-  {
-    type: 'function',
-    function: {
-      name: 'agent_handoff',
-      say: 'One moment while I transfer your call.',
-      description: 'Transfers the customer to a live agent in case they request help from a real person.',
-      parameters: {
-        type: 'object',
-        properties: {
-          callSid: {
-            type: 'string',
-            description: 'The unique identifier for the active phone call.',
-          },
-        },
-        required: ['callSid'],
-      },
-      returns: {
-        type: 'object',
-        properties: {
-          status: {
-            type: 'string',
-            description: 'Whether or not the customer call was successfully transfered'
-          },
-        }
-      }
-    },
- }  
 ];
 
 async function getJoke() {
@@ -77,18 +50,6 @@ async function getJoke() {
     ? data.joke
     : `${data.setup} ... ${data.delivery}`;
 }
-
-async function handleLiveAgentHandoff(callSid) {
-  await client.calls(callSid).update(
-    {  twiml: 
-    `<Response><Say>One second while we connect you</Say><Redirect>` +
-    process.env.STUDIO_FLOW_URL
-    + `?FlowEvent=return</Redirect></Response>`
-    }
-  );
-}
-
-
 
 const toolFunctions = {
   get_programming_joke: async () => getJoke(),

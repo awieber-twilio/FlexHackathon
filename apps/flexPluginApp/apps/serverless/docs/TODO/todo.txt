@@ -1,5 +1,0 @@
-The Twilio function, 'conversationSummary.js' is provide as an example of using Twilio Media Streams to write IVR (self-service) dialog to a Twilio Sync List.
-
-The function queries the SyncList to present a data object to OpenAi for a summarization wihin the agent UI.
-
-This function would commonly be called as a client-side AJAX action from the Flex Plugin.
