@@ -77,7 +77,7 @@ Follow the instructions in the [README](/apps/convRelayApp/README.md) file for t
 
 Follow the instructions in the [README](/apps/flexPluginApp/README.md) file for the Flex Plugin App.
 
-### Step 5 (Optional): Import the example Studio Flow
+### Step 5: Import the example Studio Flow
 
 There is a example [Studio Flow](/docs/studio.json) that can be used to redirect the incoming call to the Conversation Relay socket server.  Use this JSON file to import the example flow into your project.
 
@@ -88,6 +88,57 @@ The screenshot below illustrate this flow. Set the URI location of your websocke
 >NOTE: Specify the URI location of your websocket server in the Studio Variable Widget.
 
 &nbsp;
+
+## Conversation Relay: Add tool for agent handoff 
+
+In index.js, find the array that defines the AI Assistant's tools at line 21.  Add the following code block within the array to add a function for transfering the call. 
+```
+ {
+    type: 'function',
+    function: {
+      name: 'agent_handoff',
+      say: 'One moment while I transfer your call.',
+      description: 'Transfers the customer to a live agent in case they request help from a real person.',
+      parameters: {
+        type: 'object',
+        properties: {},
+        required: [],
+      },
+      returns: {
+        type: 'object',
+        properties: {
+          status: {
+            type: 'string',
+            description: 'Whether or not the customer call was successfully transfered'
+          },
+        }
+      }
+    },
+ }
+ ```
+ Add the agent_handoff tool within toolFunctions in line 75. The final object should look like this: 
+ ```
+ const toolFunctions = {
+  get_programming_joke: async () => getJoke(),
+  agent_handoff: async () => handleLiveAgentHandoff()
+};
+ ```
+
+Now add the async function for handling the live agent handoff
+ ```
+async function handleLiveAgentHandoff (callSid) {
+  await client.calls(callSid).update(
+    {  twiml: 
+    `<Response><Say>One second while we connect you</Say><Redirect>` +
+    process.env.STUDIO_FLOW_URL
+    + `</Redirect></Response>`
+    }
+  );
+}
+ ```
+
+ We added an environment variable that we'll need to add to our .env file.
+
 
 ### Step 6: Launch Conversation Relay Socket Server
 

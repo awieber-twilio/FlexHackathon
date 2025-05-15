@@ -40,6 +40,7 @@ npm install
 Update Your Twilio Phone Number: In the Twilio Console under **Phone Numbers**, set the Webhook for **A call comes in** to your ngrok URL followed by /twiml. 
 
 Example: `https://[your-ngrok-subdomain].ngrok.app/twiml`.
+```
 
 ### 4. Configure Environment Variables
 
@@ -62,6 +63,8 @@ node index.js
 ## Run and test the app
 
 Call your Twilio phone number. After connection, you should be able to converse with the Open AI-powered AI Assistant, integrated over ConversationRelay with Twilio Voice!
+
+
 
 > [!NOTE] 
 > Customize the initial greeting and response behavior by modifying the aiResponse function and constants like SYSTEM_PROMPT in index.js.

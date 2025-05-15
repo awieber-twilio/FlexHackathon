@@ -9,7 +9,7 @@
           "event": "incomingMessage"
         },
         {
-          "next": "testPrompt",
+          "next": "redirect_1",
           "event": "incomingCall"
         },
         {
@@ -45,32 +45,12 @@
       ],
       "properties": {
         "offset": {
-          "x": 90,
-          "y": 1120
+          "x": 170,
+          "y": 460
         },
-        "workflow": "WWeaafb20c1a582426eaf4bcb573cc1302",
-        "channel": "TC74499dd3ab842a202acaa4665fd4f64a",
-        "attributes": "{\n\"name\":\"{{trigger.call.From}}\",\n\"type\":\"inbound\",\n\"customerData\" : { \"name\" : \"Tom Jones\", \n\"memberType\" : \"Gold\", \"email\" : \"tjones@twilio.com\", \"phone\": \"+13035551212\"}\n}"
-      }
-    },
-    {
-      "name": "testPrompt",
-      "type": "say-play",
-      "transitions": [
-        {
-          "next": "varMain",
-          "event": "audioComplete"
-        }
-      ],
-      "properties": {
-        "voice": "Polly.Joanna",
-        "offset": {
-          "x": 0,
-          "y": 260
-        },
-        "loop": 1,
-        "say": "This is a test prompt, delete as requried.",
-        "language": "en-US"
+        "workflow": "WW9a44c8777a97f8a9a7dec863b06e81d1",
+        "channel": "TC3f14f434d4a880998e9df1ba0c95141c",
+        "attributes": "{\"name\":\"{{trigger.call.From}}\",\"type\":\"inbound\"}"
       }
     },
     {
@@ -78,6 +58,7 @@
       "type": "add-twiml-redirect",
       "transitions": [
         {
+          "next": "SendCallToAgent",
           "event": "return"
         },
         {
@@ -89,35 +70,12 @@
       ],
       "properties": {
         "offset": {
-          "x": 460,
-          "y": 240
+          "x": 170,
+          "y": 190
         },
         "method": "POST",
-        "url": "{{flow.variables.websocketUri}}",
+        "url": "https://handler.twilio.com/twiml/EHe25b04c6d2b8bdab857875337ac3dcd0",
         "timeout": "14400"
-      }
-    },
-    {
-      "name": "varMain",
-      "type": "set-variables",
-      "transitions": [
-        {
-          "next": "redirect_1",
-          "event": "next"
-        }
-      ],
-      "properties": {
-        "variables": [
-          {
-            "type": "string",
-            "value": "https://cfavila.ngrok.io/incoming",
-            "key": "websocketUri"
-          }
-        ],
-        "offset": {
-          "x": 20,
-          "y": 490
-        }
       }
     }
   ],
