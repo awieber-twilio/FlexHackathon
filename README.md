@@ -144,7 +144,7 @@ Select the "SendCalltoAgent" widget and Select "Assign to Anyone" under the Work
 Save and publish your studio flow. 
 
 Click on the "Trigger" box to view your Flow Configuration. 
-![FlowConfiguration](images/FlowConfiguration.jpg)
+![FlowConfiguration](images/FlowConfiguration.png)
 
 Copy the "Webhook URL" to your .env file within the convRelay folder. 
 
