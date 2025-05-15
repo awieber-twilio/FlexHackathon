@@ -101,8 +101,13 @@ In index.js, find the array that defines the AI Assistant's tools at line 21.  A
       description: 'Transfers the customer to a live agent in case they request help from a real person.',
       parameters: {
         type: 'object',
-        properties: {},
-        required: [],
+        properties: {
+          callSid: {
+            type: 'string',
+            description: 'The unique identifier for the active phone call.',
+          },
+        },
+        required: ['callSid'],
       },
       returns: {
         type: 'object',
@@ -114,24 +119,24 @@ In index.js, find the array that defines the AI Assistant's tools at line 21.  A
         }
       }
     },
- }
+ }  
  ```
  Add the agent_handoff tool within toolFunctions in line 75. The final object should look like this: 
  ```
  const toolFunctions = {
   get_programming_joke: async () => getJoke(),
-  agent_handoff: async () => handleLiveAgentHandoff()
+  agent_handoff: async (callSid) => handleLiveAgentHandoff(callSid)
 };
  ```
 
 Now add the async function for handling the live agent handoff
  ```
-async function handleLiveAgentHandoff (callSid) {
+async function handleLiveAgentHandoff(callSid) {
   await client.calls(callSid).update(
     {  twiml: 
     `<Response><Say>One second while we connect you</Say><Redirect>` +
     process.env.STUDIO_FLOW_URL
-    + `</Redirect></Response>`
+    + `?FlowEvent=return</Redirect></Response>`
     }
   );
 }
