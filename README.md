@@ -116,7 +116,7 @@ node index.js
 If you've completed these step during the allotted time, you've reached the "Choose your own adventure" portion of this guided lab. Congrats!! 
 
 There is still so much more you can build with Twilio! We recommend following along with one (or all!) of these tutorials to build the digital engagement center of your wildest dreams: 
-* *Setup Time: 30-45 min* Get a complete view of your customers and expose relevant data to your support agents with [Unified Profiles in Flex](https://www.twilio.com/docs/flex/admin-guide/setup/unified-profiles/setup#set-up-unified-profiles-in-flex)
+* [*Setup Time: 30-45 min*] Get a complete view of your customers and expose relevant data to your support agents with [Unified Profiles in Flex](https://www.twilio.com/docs/flex/admin-guide/setup/unified-profiles/setup#set-up-unified-profiles-in-flex)
 * *Setup Time: 10-20 min* Increase agent productivity with automated wrap-up notes and topic categorization with [Copilot Wrap-Up Notes](https://www.twilio.com/docs/flex/admin-guide/setup/copilot/setup)
 * *Setup Prerequisite: Unified Profiles Time: 10 min* Automatically summarize customer's full profile for agents, saving them time and increasing customer satisfaction, using [Copilot Highlights](https://www.twilio.com/docs/flex/admin-guide/setup/copilot/highlights)
 * *Setup Time: 5-20 min* Explore the [Twilio Flex Plugin Library](https://flex.twilio.com/admin/plugins/library/) and install plugins that build a custom user experience and/or behaviors for Flex agents. 
