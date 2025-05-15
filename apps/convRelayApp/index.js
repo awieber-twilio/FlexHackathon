@@ -79,7 +79,6 @@ async function getJoke() {
 }
 
 async function handleLiveAgentHandoff(callSid) {
-  console.log("call SID ", callSid);
   await client.calls(callSid).update(
     {  twiml: 
     `<Response><Say>One second while we connect you</Say><Redirect>` +

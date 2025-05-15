@@ -73,22 +73,6 @@ twilio profiles:use <ProfileName>
 
 Follow the instructions in the [README](/apps/convRelayApp/README.md) file for the CR App.
 
-### Step 4: Install/Config of the Flex Plugin
-
-Follow the instructions in the [README](/apps/flexPluginApp/README.md) file for the Flex Plugin App.
-
-### Step 5: Import the example Studio Flow
-
-There is a example [Studio Flow](/docs/studio.json) that can be used to redirect the incoming call to the Conversation Relay socket server.  Use this JSON file to import the example flow into your project.
-
-The screenshot below illustrate this flow. Set the URI location of your websocket server.
-
-![IncomingCallStudioFlow](/images/IncomingCallStudioFlow.jpg) 
-
->NOTE: Specify the URI location of your websocket server in the Studio Variable Widget.
-
-&nbsp;
-
 ## Conversation Relay: Add tool for agent handoff 
 
 In index.js, find the array that defines the AI Assistant's tools at line 21.  Add the following code block within the array to add a function for transfering the call. 
@@ -142,31 +126,41 @@ async function handleLiveAgentHandoff(callSid) {
 }
  ```
 
- We added an environment variable that we'll need to add to our .env file.
+ We added an environment variable that we'll need to add to our .env file. Complete step 5 before running the conversation relay server once again. 
 
+### Step 5: Import the example Studio Flow
 
-### Step 6: Launch Conversation Relay Socket Server
+Navigate to Twilio Studio and create a new Flow. Name it something like "Transfer to Flex".
+Scroll down and select import from JSON. Then copy the JSON from the example [Studio Flow](/docs/studio.json).
 
-Use the following command to launch the CR websocket server in a local development (DEV) mode from within the root folder 'apps >> convRelayApp' :
+The screenshot below illustrate this flow. 
 
-``` 
-npm run dev
+![IncomingCallStudioFlow](/images/IncomingCallStudioFlow.jpg) 
+
+Select the Redirect widget and update the URL to the ngrok URL for your conversation relay app. Example: `https://[your-ngrok-subdomain].ngrok.app/twiml`.
+
+Select the "SendCalltoAgent" widget and Select "Assign to Anyone" under the Workflow dropdown. 
+
+Save and publish your studio flow. 
+
+Click on the "Trigger" box to view your Flow Configuration. 
+![FlowConfiguration](images/FlowConfiguration.jpg)
+
+Copy the "Webhook URL" to your .env file within the convRelay folder. 
+
+Navigate back to your phone numbers and select "Studio Flow" under "A call comes in". Select the Flow you just created under "Flow. 
+
+Now you're ready to deploy your Conversation Relay server once more by running 
 ```
-> NOTE: This command should launch the ConvRelayApp node application on port 3000.
+node index.js
+```
 
 &nbsp;
 
-### Step 7. Launch Twilio Functions (agenthandoff)
+### Step 4: Install/Config of the Flex Plugin
 
-Use the following command to launch the Twilio server functions locally.
+Follow the instructions in the [README](/apps/flexPluginApp/README.md) file for the Flex Plugin App.
 
->NOTE: Specify that this should run on port 3001.
-
-```
-cd serverless-cr
-twilio serverless start
-```
-&nbsp;
 
 ### Step 8. Launch the Twilio Flex Plugin
 
