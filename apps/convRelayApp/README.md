@@ -64,7 +64,7 @@ node index.js
 
 Call your Twilio phone number. After connection, you should be able to converse with the Open AI-powered AI Assistant, integrated over ConversationRelay with Twilio Voice!
 
-
+Ask your agent anything! Who won the Oscar for Best Picture in 2002? Is a hot dog a sandwich or a taco? Can you tell me a programming joke? 
 
 > [!NOTE] 
 > Customize the initial greeting and response behavior by modifying the aiResponse function and constants like SYSTEM_PROMPT in index.js.
