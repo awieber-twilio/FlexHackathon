@@ -1,14 +1,10 @@
 # SKO 2025 Conversation Relay - Flex Sample Plugin
-
->IMPORTANT:  This Flex Plugin repository contains additional functionality that illustrates real-time voice transcription.  For the SKO 2025 Hack-a-thon exercise, the transcription "features" are not implemented.  To review the documentation for details on transcription, refer to the [README-SKO2024](./README-SKO2024.md).
-
 Follow these simple instructions to build the plugin dependencies and run locally.
 
 The following elements and their file/folder location (parathensis), are part of this demonstration:
 
 1. Flex Plugin (src) - Custom UI interface that summarized the Customer data and more.
-
-2. Serverless Package (serverless) - This serverless package is OPTIONAL contains a single Twilio Function that is called by the Flex Plugin
+2. Serverless Package (apps/serverless) - This serverless package is OPTIONAL contains a single Twilio Function that is called by the Flex Plugin
 3. Real-Time Transcription App - This is a node package is OPTIONAL and interacts with the Twilio Media Stream, Microsoft Speech Service and Twilio Sync Stream.
 
 ### Demonstration Architecture
@@ -27,7 +23,7 @@ This screenshots below illustrate the agent experience of the sample plugin.  Th
 
 The following steps are necessary to use this plugin package.  These are:
 
-1.  Flex Plugin (src) - Setup & Configure
+2.  Flex Plugin (src) - Setup & Configure
 
 
 ### Flex Plugin - Setup and Configure
