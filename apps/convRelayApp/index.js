@@ -52,8 +52,7 @@ async function getJoke() {
 }
 
 const toolFunctions = {
-  get_programming_joke: async () => getJoke(),
-  agent_handoff: async (callSid) => handleLiveAgentHandoff(callSid)
+  get_programming_joke: async () => getJoke()
 };
 
 async function aiResponseStream(messages, ws) {

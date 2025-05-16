@@ -89,7 +89,7 @@ Follow the instructions in the [README](/apps/convRelayApp/README.md) file for t
 6. Click on the "Trigger" box to view your Flow Configuration. 
 ![FlowConfiguration](images/FlowConfiguration.png)
 
-7. Copy the "Webhook URL" to your .env file within the convRelay folder. 
+7. Copy the "Webhook URL" to your .env file for `STUDIO_FLOW_URL` within the convRelay folder. 
 
 8. Navigate back to your phone numbers and select "Studio Flow" under "A call comes in". Select the Flow you just created under "Flow. 
 
@@ -116,9 +116,10 @@ node index.js
 If you've completed these step during the allotted time, you've reached the "Choose your own adventure" portion of this guided lab. Congrats!! 
 
 There is still so much more you can build with Twilio! We recommend following along with one (or all!) of these tutorials to build the digital engagement center of your wildest dreams: 
+* [*Setup Time: Varies ] Test other channels. Edit your Studio Flow to handle inbound SMS, chat, WhatsApp.
 * [*Setup Time: 30-45 min*] Get a complete view of your customers and expose relevant data to your support agents with [Unified Profiles in Flex](https://www.twilio.com/docs/flex/admin-guide/setup/unified-profiles/setup#set-up-unified-profiles-in-flex)
 * [*Setup Time: 10-20 min*] Increase agent productivity with automated wrap-up notes and topic categorization with [Copilot Wrap-Up Notes](https://www.twilio.com/docs/flex/admin-guide/setup/copilot/setup)
-* [*Setup Prerequisite: Unified Profiles Time: 10 min*] Automatically summarize customer's full profile for agents, saving them time and increasing customer satisfaction, using [Copilot Highlights](https://www.twilio.com/docs/flex/admin-guide/setup/copilot/highlights)
+* [*Setup Prerequisite: Unified Profiles. Time: 10 min*] Automatically summarize customer's full profile for agents, saving them time and increasing customer satisfaction, using [Copilot Highlights](https://www.twilio.com/docs/flex/admin-guide/setup/copilot/highlights)
 * [*Setup Time: 5-20 min*] Explore the [Twilio Flex Plugin Library](https://flex.twilio.com/admin/plugins/library/) and install plugins that build a custom user experience and/or behaviors for Flex agents. 
 * [*Setup Time: Varies*] Build your own [Flex Plugin](https://www.twilio.com/docs/flex/quickstart/getting-started-plugin) to customize the agent experience further. 
 * [*Setup Time: 15-30min*] Configure skills-based routing with [TaskRouter](https://www.twilio.com/docs/flex/onboarding-guide/configure-skill-based-routing)
