@@ -131,5 +131,4 @@ There is still so much more you can build with Twilio! We recommend following al
 * [*Setup Time: 5-20 min*] Explore the [Twilio Flex Plugin Library](https://flex.twilio.com/admin/plugins/library/) and install plugins that build a custom user experience and/or behaviors for Flex agents. 
 * [*Setup Time: Varies*] Build your own [Flex Plugin](https://www.twilio.com/docs/flex/quickstart/getting-started-plugin) to customize the agent experience further. 
 * [*Setup Time: 15-30min*] Configure skills-based routing with [TaskRouter](https://www.twilio.com/docs/flex/onboarding-guide/configure-skill-based-routing)
-* [*Setup Time: 45 min-1hr*] Get a complete view of your customers and expose relevant data to your support agents with [Unified Profiles in Flex](https://www.twilio.com/docs/flex/admin-guide/setup/unified-profiles/setup#set-up-unified-profiles-in-flex)
-* [*Setup Prerequisite: Unified Profiles. Time: 10 min*] Automatically summarize customer's full profile for agents, saving them time and increasing customer satisfaction, using [Copilot Highlights](https://www.twilio.com/docs/flex/admin-guide/setup/copilot/highlights)
+
