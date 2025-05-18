@@ -58,7 +58,7 @@ Perform the following steps to configure, test and deploy this Twilio Flex plugi
 
 5. Now navigate to Studio. Click into Voice IVR and Messaging Flow to see how each incoming task routes to Flex. 
 
-6. Login to Flex as an agent (Flex -> Overview -> Log in with console) and set yourself to "Available", and send an SMS or trigger a voice call to your phone number. *Note that outgoing SMS will fail because the phone number associated with your account has not been registered for SMS. Learn more about SMS errors and troubleshooting in the Twilio console by navigating to Monitor -> Insights -> Messages.
+6. Login to Flex as an agent (Flex -> Overview -> Log in with console) and set yourself to "Available", and send an SMS or trigger a voice call to your phone number. *Note that outgoing SMS will fail because the phone number associated with your account has not been registered for SMS. Learn more about SMS errors and troubleshooting in the Twilio console by navigating to Monitor -> Insights -> Messages.*
 
 
 ### Step 2 : Install Twilio CLI (command line interface)
