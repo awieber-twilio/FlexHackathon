@@ -60,6 +60,10 @@ Ask your agent anything! Who won the Oscar for Best Picture in 2002? Is a hot do
 
 After you're done chatting with your bot, follow the next step to hand off your conversation from a bot to a human agent.
 
+## [Optional] Try different voices
+
+Explore Twilio's (and our partners') TTS voices that can be used with Conversation Relay [here](https://www.twilio.com/docs/voice/twiml/connect/conversationrelay#additional-tts-voices-available-for-conversationrelay)
+
 ## Conversation Relay: Add tool for agent handoff 
 
 1. In index.js, find the array that defines the AI Assistant's tools at line 26.  Add the following code block within the array to add a function for transfering the call. 
