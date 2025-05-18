@@ -62,7 +62,7 @@ After you're done chatting with your bot, follow the next step to hand off your 
 
 ## [Optional] Try different voices
 
-Explore Twilio's (and our partners') TTS voices that can be used with Conversation Relay [here](https://www.twilio.com/docs/voice/twiml/connect/conversationrelay#additional-tts-voices-available-for-conversationrelay)
+Explore Twilio's (and our partners') TTS voices that can be used with Conversation Relay [here](https://www.twilio.com/docs/voice/twiml/connect/conversationrelay#additional-tts-voices-available-for-conversationrelay). Try modifying your index.js file to add a custom voice.
 
 ## Conversation Relay: Add tool for agent handoff 
 
