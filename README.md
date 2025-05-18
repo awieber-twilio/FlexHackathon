@@ -38,13 +38,28 @@ Perform the following steps to configure, test and deploy this Twilio Flex plugi
 
 ### Step 1 : Create a new Flex Account
 
-Use the Twilio Console to create a new Flex Account if you do not already have one. Test that you can navigate to "Flex" and "Login with Console" before proceeding. 
+1. Use the Twilio Console to create a new Flex Account if you do not already have one. Test that you can navigate to "Flex" and "Login with Console" before proceeding. 
 
-Agree to the [Flex Fair Usage Policy](https://www.twilio.com/console/flex/fair-usage-policy)
+2. Agree to the [Flex Fair Usage Policy](https://www.twilio.com/console/flex/fair-usage-policy)
 
-Enable Voice AI features in the Twilio Console. Navigate to Voice / Programmable Voice, select General under Settings, and turn on the predictive and Generative AI/ML features Addendum.
+3. Enable Voice AI features in the Twilio Console. Navigate to Voice / Programmable Voice, select General under Settings, and turn on the predictive and Generative AI/ML features Addendum.
 
 &nbsp;
+
+#### Exploring your Flex Account
+
+1. Familiarize yourself with the Flex agent and administrator views by following [this guide](https://www.twilio.com/docs/flex/onboarding-guide/explore-the-built-in-flex-ui-views).
+
+2. Navigate to your Phone Numbers in the Twilio Console. Click on the phone number in your account to configure it. You should see a section for Voice Configuration and Messaging Configuration. 
+
+3. Set "A call comes in" to "Studio Flow" and set the flow as "Voice IVR" 
+
+4. Set "A message comes in" to "Studio Flow" and set the flow as "Messaging Flow". Save the configuration. 
+
+5. Now navigate to Studio. Click into Voice IVR and Messaging Flow to see how each incoming task routes to Flex. 
+
+6. Login to Flex as an agent (Flex -> Overview -> Log in with console) and set yourself to "Available", and send an SMS or trigger a voice call to your phone number. *Note that outgoing SMS will fail because the phone number associated with your account has not been registered for SMS. Learn more about SMS errors and troubleshooting in the Twilio console by navigating to Monitor -> Insights -> Messages.
+
 
 ### Step 2 : Install Twilio CLI (command line interface)
 
